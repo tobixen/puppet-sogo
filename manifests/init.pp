@@ -7,11 +7,16 @@ class sogo3 (
   $profile_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_user_profile',
   $folder_info_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_folder_info',
   $sessions_folder_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_sessions_folder',
+  $ensure_repository = present,
+  $repository_username = undef,
+  $repository_password = undef,
 ) inherits sogo3::params {
   include inline_template('sogo3::<%= @osfamily.downcase %>')
   include sogo3::package
   include sogo3::service
-  
+
+  validate_re($ensure_repository, '^(present|absent)$')
+
   class { 'sogo3::config':
     language                => $language,
     time_zone               => $time_zone,
