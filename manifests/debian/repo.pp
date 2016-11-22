@@ -1,8 +1,16 @@
 class sogo3::debian::repo {
+  include ::sogo3
+
+  if $::sogo3::repository_username and $::sogo3::repository_password {
+    $location = "https://${::sogo3::repository_username}:${::sogo3::repository_password}@packages.inverse.ca/SOGo/release/3/debian/"
+  } else {
+    $location = 'https://packages.inverse.ca/SOGo/nightly/3/debian/'
+  }
+
   apt::source { 'inverse_ca':
-    ensure   => present,
+    ensure   => $::sogo3::ensure_repository,
     comment  => 'Inverse repository for SOGo',
-    location => 'http://inverse.ca/debian-v3',
+    location => $location,
     release  => $::lsbdistcodename,
     repos    => $::lsbdistcodename,
     key      => {
