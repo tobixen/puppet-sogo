@@ -10,7 +10,10 @@ class sogo3 (
   $ensure_repository = present,
   $repository_username = undef,
   $repository_password = undef,
-) inherits sogo3::params {
+  $configuration_file = undef,
+  $package = undef,
+  $service = undef,
+) {
   include inline_template('sogo3::<%= @osfamily.downcase %>')
   include sogo3::package
   include sogo3::service

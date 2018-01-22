@@ -8,7 +8,7 @@ class sogo3::config(
   $folder_info_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_folder_info',
   $sessions_folder_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_sessions_folder',
 ) {
-  file { $sogo3::sogo_conf:
+  file { $sogo3::configuration_file:
     ensure  => file,
     content => template('sogo3/sogo.conf.erb'),
   }
