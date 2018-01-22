@@ -7,6 +7,7 @@ class sogo3 (
   $profile_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_user_profile',
   $folder_info_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_folder_info',
   $sessions_folder_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_sessions_folder',
+  $use_custom_repo = false,
   $ensure_repository = present,
   $repository_username = undef,
   $repository_password = undef,
@@ -14,7 +15,12 @@ class sogo3 (
   $package = undef,
   $service = undef,
 ) {
-  include inline_template('sogo3::<%= @osfamily.downcase %>')
+  if $use_custom_repo {
+    include sogo3::repo
+
+    Class['sogo3::repo']
+    -> Class['sogo3::package']
+  }
   include sogo3::package
   include sogo3::service
 
