@@ -3,7 +3,7 @@ class sogo3 (
   String                    $time_zone = 'America/Montreal',
   String                    $login_module = 'Calendar',
   Boolean                   $password_change_enabled = false,
-  Array[Variant]            $user_sources = [],
+  Array[Sogo3::Usersource]  $user_sources = [],
   String                    $profile_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_user_profile',
   String                    $folder_info_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_folder_info',
   String                    $sessions_folder_url = 'postgresql://sogo:sogo@localhost:5432/sogo/sogo_sessions_folder',

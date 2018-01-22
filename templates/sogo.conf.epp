@@ -82,13 +82,33 @@
   SOGoUserSources = (
 <% $sogo3::user_sources.each |$user_source| { -%>
     {
-      <%- $fields = { 'type' => 'type', 'CNFieldName' => 'cn_field_name', 'UIDFieldName' => 'uid_field_name', 'IDFieldName' => 'id_field_name', bindFields => 'bind_fields', baseDN => 'base_dn', bindDN => 'bind_dn', bindPassword => 'bind_password', canAuthenticate => 'can_authenticate', displayName => 'display_name', hostname => 'hostname', id => 'id', isAddressBook => 'is_address_book', userPasswordAlgorithm => 'user_password_algorithm' } -%>
+      <%-
+        $fields = {
+          'type'                  => 'type',
+
+          'CNFieldName'           => 'cn_field_name',
+          'IDFieldName'           => 'id_field_name',
+          'UIDFieldName'          => 'uid_field_name',
+          'baseDN'                => 'base_dn',
+          'bindDN'                => 'bind_dn',
+          'bindFields'            => 'bind_fields',
+          'bindPassword'          => 'bind_password',
+          'canAuthenticate'       => 'can_authenticate',
+          'displayName'           => 'display_name',
+	  'filter'                => 'filter',
+          'hostname'              => 'hostname',
+          'id'                    => 'id',
+          'isAddressBook'         => 'is_address_book',
+          'userPasswordAlgorithm' => 'user_password_algorithm',
+          'viewURL'               => 'view_url',
+        }
+      -%>
       <%- $fields.each |$sogo_key, $key| { -%>
         <%- $value = $user_source[$key] -%>
         <%-
           case $value {
             Array: {
-              $sogo_value = $value.join(', ')
+              $sogo_value = concat(['('], [$value.join(', ')], [')']).join('')
               $skip = false
             }
             String: {
