@@ -31,7 +31,7 @@ class sogo3 (
     password_change_enabled => $password_change_enabled,
   }
 
-  Class['sogo3::package'] ->
-  Class['sogo3::config'] ~>
-  Class['sogo3::service']
+  Class['sogo3::package']
+  -> Class['sogo3::config']
+  ~> Class['sogo3::service']
 }
