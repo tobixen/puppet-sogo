@@ -1,6 +1,4 @@
 class sogo3::repo {
-  include sogo3
-
   if $sogo3::repository_username and $sogo3::repository_password {
     $location = "https://${sogo3::repository_username}:${sogo3::repository_password}@packages.inverse.ca/SOGo/release/3/debian/"
   } else {

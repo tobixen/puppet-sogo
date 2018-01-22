@@ -16,14 +16,14 @@ class sogo3 (
   String                    $service = undef,
 ) {
   if $use_custom_repo {
-    include sogo3::repo
+    contain sogo3::repo
 
     Class['sogo3::repo']
     -> Class['sogo3::package']
   }
-  include sogo3::package
-  include sogo3::config
-  include sogo3::service
+  contain sogo3::package
+  contain sogo3::config
+  contain sogo3::service
 
   Class['sogo3::package']
   -> Class['sogo3::config']
