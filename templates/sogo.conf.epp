@@ -16,9 +16,9 @@
    * **************************************************************************/
 
   /* Database configuration (mysql:// or postgresql://) */
-  SOGoProfileURL = "<%= @profile_url %>";
-  OCSFolderInfoURL = "<%= @folder_info_url %>";
-  OCSSessionsFolderURL = "<%= @sessions_folder_url %>";
+  SOGoProfileURL = "<%= $sogo3::profile_url %>";
+  OCSFolderInfoURL = "<%= $sogo3::folder_info_url %>";
+  OCSSessionsFolderURL = "<%= $sogo3::sessions_folder_url %>";
 
   /* Mail */
   //SOGoDraftsFolderName = Drafts;
@@ -39,7 +39,7 @@
   //SOGoFoldersSendEMailNotifications = NO;
 
   /* Authentication */
-  SOGoPasswordChangeEnabled = <%= @password_change_enabled ? 'YES' : 'NO' %>;
+  SOGoPasswordChangeEnabled = <%= bool2str($sogo3::password_change_enabled, 'YES', 'NO') %>;
 
   /* LDAP authentication example */
   //SOGoUserSources = (
@@ -80,28 +80,64 @@
   //);
 
   SOGoUserSources = (
-<% @user_sources.each do |user_source| -%>
+<% $sogo3::user_sources.each |$user_source| { -%>
     {
-<% { type: 'type', CNFieldName: 'cn_field_name', UIDFieldName: 'uid_field_name', IDFieldName: 'id_field_name', bindFields: 'bind_fields', baseDN: 'base_dn', bindDN: 'bind_dn', bindPassword: 'bind_password', canAuthenticate: 'can_authenticate', displayName: 'display_name', hostname: 'hostname', id: 'id', isAddressBook: 'is_address_book', userPasswordAlgorithm: 'user_password_algorithm' }.each do |sogo_key, key| -%>
-  <%-
-     value = user_source[key]
-     case value
-     when Array
-       value = "(#{value.join(', ')})"
-     when String
-       value = %("#{value}") if value =~ /[ ,;]/
-     when true
-       value = 'YES'
-     when false
-       value = 'NO'
-     end
-  -%>
-  <%- unless value.nil? -%>
-      <%= sogo_key %> = <%= value %>;
-  <%- end -%>
-<% end -%>
+      <%-
+        $fields = {
+          'type'                  => 'type',
+
+          'CNFieldName'           => 'cn_field_name',
+          'IDFieldName'           => 'id_field_name',
+          'UIDFieldName'          => 'uid_field_name',
+          'baseDN'                => 'base_dn',
+          'bindDN'                => 'bind_dn',
+          'bindFields'            => 'bind_fields',
+          'bindPassword'          => 'bind_password',
+          'canAuthenticate'       => 'can_authenticate',
+          'displayName'           => 'display_name',
+	  'filter'                => 'filter',
+          'hostname'              => 'hostname',
+          'id'                    => 'id',
+          'isAddressBook'         => 'is_address_book',
+          'userPasswordAlgorithm' => 'user_password_algorithm',
+          'viewURL'               => 'view_url',
+        }
+      -%>
+      <%- $fields.each |$sogo_key, $key| { -%>
+        <%- $value = $user_source[$key] -%>
+        <%-
+          case $value {
+            Array: {
+              $sogo_value = concat(['('], [$value.join(', ')], [')']).join('')
+              $skip = false
+            }
+            String: {
+              if $value =~ /[ ,;]/ {
+                $sogo_value = String($value, '%p')
+              } else {
+                $sogo_value = $value
+              }
+              $skip = false
+            }
+            true: {
+              $sogo_value = 'YES'
+              $skip = false
+            }
+            false: {
+              $sogo_value = 'NO'
+              $skip = false
+            }
+            default: {
+              $skip = true
+            }
+          }
+        -%>
+        <%- unless $skip { -%>
+          <%= $sogo_key %> = <%= $sogo_value %>;
+        <%- } -%>
+      <%- } -%>
     }
-<% end -%>
+<% } -%>
   );
 
   /* SQL authentication example */
@@ -134,9 +170,9 @@
   //SOGoTrustProxyAuthentication = NO;
 
   /* General */
-  SOGoLanguage = <%= @language %>;
-  SOGoTimeZone = <%= @time_zone %>;
-  SOGoLoginModule = <%= @login_module %>;
+  SOGoLanguage = <%= $sogo3::language %>;
+  SOGoTimeZone = <%= $sogo3::time_zone %>;
+  SOGoLoginModule = <%= $sogo3::login_module %>;
   //SOGoCalendarDefaultRoles = (
   //  PublicDAndTViewer,
   //  ConfidentialDAndTViewer

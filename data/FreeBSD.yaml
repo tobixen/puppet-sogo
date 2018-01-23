@@ -1,0 +1,3 @@
+sogo3::configuration_file: '/usr/local/etc/sogo3/sogo.conf'
+sogo3::package: 'sogo3'
+sogo3::service: 'sogod'
