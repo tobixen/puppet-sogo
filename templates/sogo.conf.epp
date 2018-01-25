@@ -88,8 +88,8 @@
 
           'CNFieldName'           => 'cn_field_name',
           'IDFieldName'           => 'id_field_name',
-          'MailFieldNames'        => 'mail_field_names'
-          'SearchFieldNames'      => 'search_field_names'
+          'MailFieldNames'        => 'mail_field_names',
+          'SearchFieldNames'      => 'search_field_names',
           'UIDFieldName'          => 'uid_field_name',
           'baseDN'                => 'base_dn',
           'bindDN'                => 'bind_dn',
