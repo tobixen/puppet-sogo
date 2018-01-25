@@ -115,7 +115,8 @@
             }
             String: {
               if $value =~ /[ ,;]/ {
-                $sogo_value = String($value, '%p')
+	        # FIXME: Values with double-quotes will not like this
+                $sogo_value = "\"${value}\""
               } else {
                 $sogo_value = $value
               }
