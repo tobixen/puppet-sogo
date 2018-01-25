@@ -114,7 +114,7 @@
               $skip = false
             }
             String: {
-              if $value =~ /[ ,;]/ {
+              if $value =~ /[ ,;=]/ {
 	        # FIXME: Values with double-quotes will not like this
                 $sogo_value = "\"${value}\""
               } else {
