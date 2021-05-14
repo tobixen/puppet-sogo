@@ -17,15 +17,27 @@
 
 ## Classes
 
-### `sogo`
+### <a name="sogo"></a>`sogo`
 
 Manage SOGo
 
 #### Parameters
 
-The following parameters are available in the `sogo` class.
+The following parameters are available in the `sogo` class:
 
-##### `language`
+* [`language`](#language)
+* [`time_zone`](#time_zone)
+* [`login_module`](#login_module)
+* [`password_change_enabled`](#password_change_enabled)
+* [`user_sources`](#user_sources)
+* [`profile_url`](#profile_url)
+* [`folder_info_url`](#folder_info_url)
+* [`sessions_folder_url`](#sessions_folder_url)
+* [`configuration_file`](#configuration_file)
+* [`package`](#package)
+* [`service`](#service)
+
+##### <a name="language"></a>`language`
 
 Data type: `String[1]`
 
@@ -33,7 +45,7 @@ Default language used in the Web interface
 
 Default value: `'English'`
 
-##### `time_zone`
+##### <a name="time_zone"></a>`time_zone`
 
 Data type: `String[1]`
 
@@ -41,7 +53,7 @@ Default time zone for users
 
 Default value: `'America/Montreal'`
 
-##### `login_module`
+##### <a name="login_module"></a>`login_module`
 
 Data type: `String[1]`
 
@@ -49,7 +61,7 @@ Module to show after login
 
 Default value: `'Calendar'`
 
-##### `password_change_enabled`
+##### <a name="password_change_enabled"></a>`password_change_enabled`
 
 Data type: `Boolean`
 
@@ -57,7 +69,7 @@ Allow or not users to change their passwords from SOGo
 
 Default value: ``false``
 
-##### `user_sources`
+##### <a name="user_sources"></a>`user_sources`
 
 Data type: `Array[Sogo::Usersource]`
 
@@ -65,7 +77,7 @@ LDAP and/or SQL sources used for authentication and global address books
 
 Default value: `[]`
 
-##### `profile_url`
+##### <a name="profile_url"></a>`profile_url`
 
 Data type: `String[1]`
 
@@ -73,7 +85,7 @@ Database URL so that SOGo can retrieve user profiles
 
 Default value: `'postgresql://sogo:sogo@localhost:5432/sogo/sogo_user_profile'`
 
-##### `folder_info_url`
+##### <a name="folder_info_url"></a>`folder_info_url`
 
 Data type: `String[1]`
 
@@ -81,7 +93,7 @@ Database URL so that SOGo can retrieve the location of user folders
 
 Default value: `'postgresql://sogo:sogo@localhost:5432/sogo/sogo_folder_info'`
 
-##### `sessions_folder_url`
+##### <a name="sessions_folder_url"></a>`sessions_folder_url`
 
 Data type: `String[1]`
 
@@ -89,43 +101,46 @@ Database URL so that SOGo can store and retrieve secured user sessions informati
 
 Default value: `'postgresql://sogo:sogo@localhost:5432/sogo/sogo_sessions_folder'`
 
-##### `configuration_file`
+##### <a name="configuration_file"></a>`configuration_file`
 
 Data type: `String[1]`
 
 Path to SOGo configuration file
 
-##### `package`
+##### <a name="package"></a>`package`
 
 Data type: `String[1]`
 
 Package name
 
-##### `service`
+##### <a name="service"></a>`service`
 
 Data type: `String[1]`
 
 Ensure parameter for the SOGo package
 
-### `sogo::config`
+### <a name="sogoconfig"></a>`sogo::config`
 
 Manage SOGo configuration file
 
-### `sogo::package`
+### <a name="sogopackage"></a>`sogo::package`
 
 Manage the SOGo package
 
-### `sogo::service`
+### <a name="sogoservice"></a>`sogo::service`
 
 Manage the SOGo service
 
 ## Data types
 
-### `Sogo::Usersource`
+### <a name="sogousersource"></a>`Sogo::Usersource`
 
 Manage a SOGo user source
 
-Alias of `Struct[{
+Alias of
+
+```puppet
+Struct[{
     type                    => Enum['ldap', 'sql'],
     cn_field_name           => Optional[String],
     uid_field_name          => Optional[String],
@@ -144,5 +159,6 @@ Alias of `Struct[{
     is_address_book         => Optional[Boolean],
     user_password_algorithm => Optional[String],
     view_url                => Optional[String],
-  }]`
+  }]
+```
 
