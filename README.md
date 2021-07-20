@@ -1,5 +1,14 @@
 # sogo
 
+<!-- header GFM -->
+[![Build Status](https://img.shields.io/github/workflow/status/opus-codium/puppet-sogo/Release)](https://github.com/opus-codium/puppet-sogo/releases)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/opuscodium/sogo.svg)](https://forge.puppetlabs.com/opuscodium/sogo)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/opuscodium/sogo.svg)](https://forge.puppetlabs.com/opuscodium/sogo)
+[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/opuscodium/sogo.svg)](https://forge.puppetlabs.com/opuscodium/sogo)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/opuscodium/sogo.svg)](https://forge.puppetlabs.com/opuscodium/sogo)
+[![License](https://img.shields.io/github/license/opus-codium/puppet-sogo.svg)](https://github.com/voxpupuli/opuscodium-sogo/blob/master/LICENSE.md)
+<!-- header -->
+
 #### Table of Contents
 
 <!-- vim-markdown-toc GFM -->
