@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0](https://github.com/opus-codium/puppet-sogo/tree/3.1.0) (2022-09-10)
+
+[Full Changelog](https://github.com/opus-codium/puppet-sogo/compare/3.0.0...3.1.0)
+
+**Implemented enhancements:**
+
+- Add support for Debian 11 [\#36](https://github.com/opus-codium/puppet-sogo/pull/36) ([smortex](https://github.com/smortex))
+
+**Merged pull requests:**
+
+- Allow stdlib 8.x [\#37](https://github.com/opus-codium/puppet-sogo/pull/37) ([smortex](https://github.com/smortex))
+
 ## [3.0.0](https://github.com/opus-codium/puppet-sogo/tree/3.0.0) (2021-05-14)
 
 [Full Changelog](https://github.com/opus-codium/puppet-sogo/compare/2.0.1...3.0.0)
