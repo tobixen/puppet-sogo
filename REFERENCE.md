@@ -6,10 +6,15 @@
 
 ### Classes
 
+#### Public Classes
+
 * [`sogo`](#sogo): Manage SOGo
-* [`sogo::config`](#sogoconfig): Manage SOGo configuration file
-* [`sogo::package`](#sogopackage): Manage the SOGo package
-* [`sogo::service`](#sogoservice): Manage the SOGo service
+
+#### Private Classes
+
+* `sogo::config`: Manage SOGo configuration file
+* `sogo::package`: Manage the SOGo package
+* `sogo::service`: Manage the SOGo service
 
 ### Data types
 
@@ -118,18 +123,6 @@ Package name
 Data type: `String[1]`
 
 Ensure parameter for the SOGo package
-
-### <a name="sogoconfig"></a>`sogo::config`
-
-Manage SOGo configuration file
-
-### <a name="sogopackage"></a>`sogo::package`
-
-Manage the SOGo package
-
-### <a name="sogoservice"></a>`sogo::service`
-
-Manage the SOGo service
 
 ## Data types
 
