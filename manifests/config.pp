@@ -6,6 +6,8 @@ class sogo::config {
 
   file { $sogo::configuration_file:
     ensure  => file,
+    group   => 'sogo',
+    mode    => '0440',
     content => epp('sogo/sogo.conf.epp'),
   }
 }
